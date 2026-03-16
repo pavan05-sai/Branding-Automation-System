@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandCraft - AI Branding Suite</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/social-preview.css">
+    <link rel="stylesheet" href="css/mockups.css">
+    <!-- Add Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Mock FontAwesome -->
+    <!-- Add Font Awesome for icons -->
+</head>
+
+<body class="dark-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1 class="gradient-text">BrandCraft</h1>
+                </a>
+            </div>
+            <div class="nav-controls">
+                <!-- User Profile Widget -->
+                <div class="user-profile" id="userProfile">
+                    <img src="" alt="User" id="userAvatar" class="user-avatar" style="display:none">
+                    <div class="user-info">
+                        <span id="userName" class="user-name">Loading...</span>
+                    </div>
+
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <button class="dropdown-item">
+                            <span>Settings</span>
+                        </button>
+                        <div style="height: 1px; background: var(--border-color); margin: 0.5rem 0;"></div>
+                        <button id="logoutBtn" class="dropdown-item danger">
+                            <span>Log Out</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div style="width: 1px; height: 30px; background: var(--border-color); margin: 0 0.5rem;"></div>
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <h1 class="dashboard-title" id="dashboardTitle">Branding Dashboard</h1>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="brand">Brand Names</button>
+            <button class="tab-btn" data-tab="logo">Logo</button>
+            <button class="tab-btn" data-tab="content">Content</button>
+            <button class="tab-btn" data-tab="design">Design System</button>
+            <button class="tab-btn" data-tab="sentiment">Sentiment</button>
+            <button class="tab-btn" data-tab="chat">Chat</button>
+            <button class="tab-btn" data-tab="profile">My Profile</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content-container">
+            <!-- Existing Tabs ... -->
+
+            <!-- Brand Tab -->
+            <div id="brand-tab" class="tab-content active">
+                <h2>Brand Name Generator</h2>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="brandKeywords">Keywords</label>
+                        <input type="text" id="brandKeywords" placeholder="e.g., Smart, innovative, tech">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brandIndustry">Industry</label>
+                        <select id="brandIndustry">
+                            <option value="technology">Technology</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="food">Food & Beverage</option>
+                            <option value="health">Health & Wellness</option>
+                            <option value="finance">Finance</option>
+                            <option value="education">Education</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brandTone">Tone</label>
+                        <select id="brandTone">
+                            <option value="professional">Professional</option>
+                            <option value="playful">Playful</option>
+                            <option value="modern">Modern</option>
+                            <option value="elegant">Elegant</option>
+                            <option value="bold">Bold</option>
+                        </select>
+                    </div>
+
+                    <button class="generate-btn" id="generateBrandBtn">Generate Brand Names</button>
+                </div>
+
+                <div id="brandOutput" class="output-section"></div>
+            </div>
+
+            <!-- Logo Tab -->
+            <div id="logo-tab" class="tab-content">
+                <h2>Logo Generator</h2>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="logoName">Brand Name</label>
+                        <input type="text" id="logoName" placeholder="e.g., TechVision">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logoIndustry">Industry</label>
+                        <input type="text" id="logoIndustry" placeholder="e.g., Technology">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logoKeywords">Keywords</label>
+                        <input type="text" id="logoKeywords" placeholder="e.g., modern, cool, attractive">
+                    </div>
+
+                    <button class="generate-btn" id="generateLogoBtn">Generate Logo & Image</button>
+                </div>
+
+                <div id="logoOutput" class="output-section"></div>
+
+                <!-- Merchandise Mockups -->
+                <div id="mockupPreviews" class="mockup-container" style="display: none;">
+                    <h3>🛍️ See Your Logo in Action</h3>
+                    <div class="mockup-grid">
+                        <!-- Business Card Mockup -->
+                        <div class="mockup-card">
+                            <div class="mockup-businesscard">
+                                <div class="card-logo" id="businessCardLogo"></div>
+                                <div class="card-text">
+                                    <strong id="cardBrandName">Brand Name</strong>
+                                    <span>Your Company Tagline</span>
+                                </div>
+                            </div>
+                            <span class="mockup-label">Business Card</span>
+                        </div>
+
+                        <!-- Signage Mockup -->
+                        <div class="mockup-card">
+                            <div class="mockup-signage">
+                                <div class="sign-frame">
+                                    <div class="sign-logo" id="signageLogo"></div>
+                                </div>
+                            </div>
+                            <span class="mockup-label">Office Signage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="content-tab" class="tab-content">
+                <h2>Marketing Content Generator</h2>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="contentBrandName">Brand Name</label>
+                        <input type="text" id="contentBrandName" placeholder="e.g., EcoThread">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contentDescription">Brand Description</label>
+                        <textarea id="contentDescription" rows="4"
+                            placeholder="Describe your brand or product..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contentTone">Tone</label>
+                        <select id="contentTone">
+                            <option value="professional">Professional</option>
+                            <option value="casual">Casual</option>
+                            <option value="enthusiastic">Enthusiastic</option>
+                            <option value="informative">Informative</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contentType">Content Type</label>
+                        <select id="contentType">
+                            <option value="product description">Product Description</option>
+                            <option value="caption">Social Media Caption</option>
+                            <option value="ad copy">Ad Copy</option>
+                        </select>
+                    </div>
+
+                    <button class="generate-btn" id="generateContentBtn">Generate Content</button>
+                </div>
+
+                <div id="contentOutput" class="output-section"></div>
+
+                <!-- Social Media Previews -->
+                <div id="socialPreviews" class="social-previews-container" style="display: none;">
+                    <h3>📱 Social Media Preview</h3>
+                    <div class="preview-cards">
+                        <!-- Instagram Preview -->
+                        <div class="social-card instagram-card">
+                            <div class="social-header">
+                                <div class="social-avatar" id="instaAvatar"></div>
+                                <div class="social-handle">
+                                    <strong id="instaBrandName">Your Brand</strong>
+                                    <span>Sponsored</span>
+                                </div>
+                            </div>
+                            <div class="social-image" id="instaImage">
+                                <span class="placeholder-text">Your image here</span>
+                            </div>
+                            <div class="social-actions">
+                                <span>❤️</span>
+                                <span>💬</span>
+                                <span>📤</span>
+                            </div>
+                            <div class="social-caption">
+                                <strong id="instaName">Brand</strong>
+                                <span id="instaCaption">Your caption will appear here...</span>
+                            </div>
+                            <div class="social-badge">Instagram</div>
+                        </div>
+
+                        <!-- LinkedIn Preview -->
+                        <div class="social-card linkedin-card">
+                            <div class="social-header">
+                                <div class="social-avatar linkedin-avatar" id="linkedinAvatar"></div>
+                                <div class="social-handle">
+                                    <strong id="linkedinBrandName">Your Brand</strong>
+                                    <span>Company • Promoted</span>
+                                </div>
+                            </div>
+                            <div class="social-content">
+                                <p id="linkedinCaption">Your professional content will appear here...</p>
+                            </div>
+                            <div class="linkedin-engagement">
+                                <span>👍 32</span>
+                                <span>💬 8 comments</span>
+                                <span>↗️ 4 reposts</span>
+                            </div>
+                            <div class="social-badge linkedin">LinkedIn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Tab -->
+            <div id="design-tab" class="tab-content">
+                <h2>Design System Generator</h2>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="designBrandName">Brand Name</label>
+                        <input type="text" id="designBrandName" placeholder="e.g., TechFlow">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="designTone">Brand Tone</label>
+                        <input type="text" id="designTone" placeholder="e.g., Playful">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="designIndustry">Industry</label>
+                        <input type="text" id="designIndustry" placeholder="e.g., Technology">
+                    </div>
+
+                    <button class="generate-btn" id="generateDesignBtn">Get Design System</button>
+                </div>
+
+                <div id="designOutput" class="output-section"></div>
+            </div>
+
+            <!-- Sentiment Tab -->
+            <div id="sentiment-tab" class="tab-content">
+                <h2>Review Analyzer</h2>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="sentimentReview">Customer Review</label>
+                        <textarea id="sentimentReview" rows="5" placeholder="Enter customer review..."></textarea>
+                    </div>
+
+                    <button class="generate-btn" id="analyzeSentimentBtn">Analyze & Rewrite</button>
+                </div>
+
+                <div id="sentimentOutput" class="output-section"></div>
+            </div>
+
+            <!-- Chat Tab -->
+            <div id="chat-tab" class="tab-content">
+                <h2>AI Branding Chat</h2>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages"></div>
+
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask me anything about branding..." />
+                        <button class="send-btn" id="sendChatBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile-tab" class="tab-content">
+                <h2>User Profile & Settings</h2>
+                <div class="profile-layout">
+                    <!-- Profile Card -->
+                    <div class="profile-card-large">
+                        <div class="profile-header">
+                            <img src="" id="profilePicLarge" class="profile-pic-large" alt="Profile">
+                            <div class="profile-header-info">
+                                <h3 id="profileNameLarge">User Name</h3>
+                                <p id="profileEmailLarge" class="text-muted">user@example.com</p>
+
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Member Since</span>
+                                <span class="stat-value" id="memberSince">Feb 2026</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Account Type</span>
+                                <span class="stat-value">Free Trial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="settings-sections">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-cog"></i> Preferences</h3>
+                            <div class="form-group-toggle">
+                                <label for="saveHistory">Save Generation History</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="saveHistory" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="form-group-toggle">
+                                <label for="emailNotifications">Monthly Brand Report</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="emailNotifications">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <!-- Brand Voice DNA -->
+                            <div class="settings-card brand-voice-card">
+                                <h3>🧬 Brand Voice DNA</h3>
+                                <p class="card-subtitle">Define your brand personality once. All AI tools will adapt
+                                    automatically.</p>
+
+                                <div class="form-group">
+                                    <label for="brandPersonality">Brand Personality</label>
+                                    <input type="text" id="brandPersonality"
+                                        placeholder="e.g., Professional, Eco-friendly, Witty, Bold">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="brandIndustryGlobal">Industry</label>
+                                    <select id="brandIndustryGlobal">
+                                        <option value="">Select your industry...</option>
+                                        <option value="technology">Technology</option>
+                                        <option value="fashion">Fashion & Lifestyle</option>
+                                        <option value="health">Health & Wellness</option>
+                                        <option value="food">Food & Beverage</option>
+                                        <option value="finance">Finance & Fintech</option>
+                                        <option value="education">Education</option>
+                                        <option value="entertainment">Entertainment & Media</option>
+                                        <option value="retail">Retail & E-commerce</option>
+                                        <option value="services">Professional Services</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="brandTargetAudience">Target Audience</label>
+                                    <input type="text" id="brandTargetAudience"
+                                        placeholder="e.g., Young professionals, Parents, Small business owners">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="brandToneGlobal">Brand Tone</label>
+                                    <select id="brandToneGlobal">
+                                        <option value="">Select tone...</option>
+                                        <option value="professional">Professional & Corporate</option>
+                                        <option value="friendly">Friendly & Approachable</option>
+                                        <option value="playful">Playful & Fun</option>
+                                        <option value="luxurious">Premium & Luxurious</option>
+                                        <option value="technical">Technical & Expert</option>
+                                        <option value="inspirational">Inspirational & Motivational</option>
+                                    </select>
+                                </div>
+
+                                <button class="generate-btn" id="saveBrandVoiceBtn">
+                                    💾 Save Brand Voice
+                                </button>
+                                <span id="brandVoiceSaveStatus" class="save-status"></span>
+                            </div>
+
+                            <!-- Export Brand Guide -->
+                            <div class="settings-card export-card">
+                                <h3>📄 Export Brand Bible</h3>
+                                <p class="card-subtitle">Download your complete brand guide as a professional PDF.</p>
+                                <button class="generate-btn" id="exportBrandGuideBtn">
+                                    📥 Download Brand Guide
+                                </button>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3><i class="fas fa-shield-alt"></i> Account Privacy</h3>
+                                <button class="btn-outline-danger" id="deleteAccountBtn">Deactivate Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 BrandCraft | Powered by IBM Granite, Groq AI, SDXL</p>
+        </footer>
+
+        <script src="js/api.js"></script>
+        <script src="js/main.js"></script>
+</body>
+
+</html>

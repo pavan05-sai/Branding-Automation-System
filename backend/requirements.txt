@@ -1,0 +1,28 @@
+# BrandCraft Backend Dependencies
+# FastAPI Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# Groq Cloud SDK for AI
+groq==0.4.2
+
+# Environment Management
+python-dotenv==1.0.0
+
+# Validation (included with FastAPI but explicit)
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# HTTP Client (for testing)
+httpx==0.26.0
+
+# MongoDB (async driver)
+motor==3.3.2
+pymongo==4.6.1
+
+# PDF Generation
+reportlab==4.0.9
+
+# Google Gemini / Imagen
+google-generativeai==0.3.2

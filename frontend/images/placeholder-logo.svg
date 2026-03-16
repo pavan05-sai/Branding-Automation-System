@@ -1,0 +1,5 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#e5e7eb" rx="24" />
+  <path d="M256 180c-41.9 0-76 34.1-76 76 0 41.9 34.1 76 76 76 41.9 0 76-34.1 76-76 0-41.9-34.1-76-76-76zm0 132c-30.9 0-56-25.1-56-56 0-30.9 25.1-56 56-56 30.9 0 56 25.1 56 56 0 30.9-25.1 56-56 56z" fill="#9ca3af"/>
+  <text x="50%" y="80%" font-family="Arial, sans-serif" font-size="32" fill="#9ca3af" text-anchor="middle">Preview Unavailable</text>
+</svg>
