@@ -29,6 +29,6 @@ uvicorn app.main:app --reload --port 8000
 ```
 
 ### 2. Setup the Frontend
-Simply open the `index.html` file located in the `frontend` folder in your browser. No extra setup is required!
+Simply open the `index.html` file located in the `frontend` folder in your browser. No extra setup is required
 
 
