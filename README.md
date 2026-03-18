@@ -4,11 +4,6 @@ BrandCraft is a simple GenAI-powered branding platform tailored for startups and
 
 ## 🚀 Features
 
-- **Brand Name Generator**: Get creative names for your business.
-- **Content Creator**: Generate engaging social posts, emails, and taglines.
-- **Branding Chatbot**: An AI assistant for your brand strategies.
-- **Design System Generator**: Find the perfect color palette.
-- **Sentiment Analysis**: Analyze customer feedback easily.
 
 ## 🛠️ Tech Stack
 
